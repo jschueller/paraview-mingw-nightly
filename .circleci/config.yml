@@ -9,7 +9,7 @@ jobs:
     steps:
       - run:
           name: Build
-          command: aurman -S --noconfirm --noedit --pgp_fetch mingw-w64-vtk-git
+          command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-vtk-git
 
   paraview:
     docker:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - run:
           name: Build
-          command: aurman -S --noconfirm --noedit --pgp_fetch mingw-w64-paraview-git
+          command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-paraview-git
 
 workflows:
   version: 2
