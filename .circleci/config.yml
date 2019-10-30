@@ -20,6 +20,9 @@ jobs:
       - run:
           name: Build
           command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-paraview-git
+      - run:
+          name: Plugin
+          command: cd /tmp && git clone https://github.com/jschueller/paraview-plugin-example.git && cd paraview-plugin-example && x86_64-w64-mingw32-cmake . && make
 
 workflows:
   version: 2
