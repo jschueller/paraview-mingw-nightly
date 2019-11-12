@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  vtk:
+  vtk-git:
     docker:
       - image: openturns/archlinux-mingw
         environment:
@@ -11,7 +11,7 @@ jobs:
           name: Build
           command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-vtk-git
 
-  paraview:
+  paraview-git:
     docker:
       - image: openturns/archlinux-mingw
         environment:
@@ -24,12 +24,41 @@ jobs:
           name: Plugin
           command: cd /tmp && git clone https://github.com/jschueller/paraview-plugin-example.git && cd paraview-plugin-example && x86_64-w64-mingw32-cmake -Dqt_xmlpatterns_executable=/usr/bin/x86_64-w64-mingw32-xmlpatterns . && make
 
+  paraview:
+    docker:
+      - image: openturns/archlinux-mingw
+        environment:
+          MAKEFLAGS: "-j2"
+    steps:
+      - run:
+          name: Build
+          command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-paraview
+      - run:
+          name: Plugin
+          command: cd /tmp && git clone https://github.com/jschueller/paraview-plugin-example.git && cd paraview-plugin-example && x86_64-w64-mingw32-cmake -Dqt_xmlpatterns_executable=/usr/bin/x86_64-w64-mingw32-xmlpatterns . && make
+
+  paraview56:
+    docker:
+      - image: openturns/archlinux-mingw
+        environment:
+          MAKEFLAGS: "-j2"
+    steps:
+      - run:
+          name: Build
+          command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-paraview56
+      - run:
+          name: Plugin
+          command: cd /tmp && git clone https://github.com/jschueller/paraview-plugin-example.git && cd paraview-plugin-example && x86_64-w64-mingw32-cmake -Dqt_xmlpatterns_executable=/usr/bin/x86_64-w64-mingw32-xmlpatterns . && make
+
 workflows:
   version: 2
   commit:
     jobs:
-      - vtk
+      - vtk-git
+      - paraview-git
       - paraview
+      - paraview56
+
   nightly:
     triggers:
       - schedule:
@@ -39,5 +68,5 @@ workflows:
               only:
                 - master
     jobs:
-      - vtk
-      - paraview
+      - vtk-git
+      - paraview-git
