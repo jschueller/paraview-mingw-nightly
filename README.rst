@@ -6,4 +6,3 @@ ParaView/MinGW nightly testing
 
 Nightly build job of ParaView and VTK with MinGW-w64 environment
 
-
