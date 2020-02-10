@@ -24,12 +24,26 @@ jobs:
           name: Plugin
           command: cd /tmp && git clone https://github.com/jschueller/paraview-plugin-example.git && cd paraview-plugin-example && x86_64-w64-mingw32-cmake -Dqt_xmlpatterns_executable=/usr/bin/x86_64-w64-mingw32-xmlpatterns . && make VERBOSE=1
 
+  paraview58:
+    docker:
+      - image: openturns/archlinux-mingw
+        environment:
+          MAKEFLAGS: "-j2"
+    steps:
+      - run:
+          name: Build
+          command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-paraview58
+      - run:
+          name: Plugin
+          command: cd /tmp && git clone https://github.com/jschueller/paraview-plugin-example.git && cd paraview-plugin-example && x86_64-w64-mingw32-cmake -Dqt_xmlpatterns_executable=/usr/bin/x86_64-w64-mingw32-xmlpatterns . && make VERBOSE=1
+
 workflows:
   version: 2
   commit:
     jobs:
       - vtk-git
       - paraview-git
+      - paraview58
 
   nightly:
     triggers:
