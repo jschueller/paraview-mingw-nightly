@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: openturns/archlinux-mingw
         environment:
-          MAKEFLAGS: "-j1"
+          MAKEFLAGS: "-j2"
     steps:
       - run:
           name: Build
