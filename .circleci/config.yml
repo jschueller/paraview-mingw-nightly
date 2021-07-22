@@ -9,6 +9,7 @@ jobs:
     steps:
       - run:
           name: Build
+          no_output_timeout: 15m
           command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-vtk-git
 
   paraview-git:
