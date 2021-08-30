@@ -19,6 +19,9 @@ jobs:
           MAKEFLAGS: "-j2"
     steps:
       - run:
+          name: fmt
+          command: git clone https://aur.archlinux.org/mingw-w64-fmt.git /tmp/fmt && cd /tmp/fmt && makepkg -sfi --nocheck
+      - run:
           name: Build
           command: aurman -Syu --noconfirm --noedit --pgp_fetch mingw-w64-paraview-git
       - run:
