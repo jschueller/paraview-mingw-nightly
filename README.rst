@@ -1,5 +1,5 @@
-.. image:: https://circleci.com/gh/jschueller/paraview-mingw-nightly.svg?style=shield
-    :target: https://circleci.com/gh/jschueller/paraview-mingw-nightly
+.. image:: https://github.com/jschueller/paraview-mingw-nightly/actions/workflows/build.yml/badge.svg?branch=master
+    :target: https://github.com/jschueller/paraview-mingw-nightly/actions/workflows/build.yml
 
 ParaView/MinGW nightly testing
 ==============================

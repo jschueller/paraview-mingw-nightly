@@ -1,0 +1,17 @@
+name: Build
+on: [push, pull_request]
+jobs:
+  vtk-git:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: docker pull openturns/archlinux-mingw && docker run --rm -e MAKEFLAGS='-j2' -v `pwd`:/io openturns/archlinux-mingw sh -c "aurman -Syu mingw-w64-vtk-git --noedit --noconfirm --pgp_fetch"
+
+  paraview-git:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: docker pull openturns/archlinux-mingw && docker run --rm -e MAKEFLAGS='-j2' -v `pwd`:/io openturns/archlinux-mingw sh -c "aurman -Syu mingw-w64-paraview-git --noedit --noconfirm --pgp_fetch"
+
