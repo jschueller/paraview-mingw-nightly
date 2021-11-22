@@ -5,7 +5,8 @@ jobs:
     docker:
       - image: openturns/archlinux-mingw
         environment:
-          MAKEFLAGS: "-j2"
+          MAKEFLAGS: "-j8"
+    resource_class: xlarge
     steps:
       - run:
           name: Build
@@ -17,7 +18,8 @@ jobs:
     docker:
       - image: openturns/archlinux-mingw
         environment:
-          MAKEFLAGS: "-j2"
+          MAKEFLAGS: "-j8"
+    resource_class: xlarge
     steps:
       - run:
           name: Build
@@ -31,7 +33,8 @@ jobs:
     docker:
       - image: openturns/archlinux-mingw
         environment:
-          MAKEFLAGS: "-j2"
+          MAKEFLAGS: "-j8"
+    resource_class: xlarge
     steps:
       - run:
           name: Build
