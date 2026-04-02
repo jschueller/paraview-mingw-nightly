@@ -12,12 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Build
-        run: docker pull openturns/archlinux-mingw && docker run --rm -e MAKEFLAGS='-j4' -v `pwd`:/io openturns/archlinux-mingw sh -c "yay -Syu mingw-w64-vtk-git --noconfirm"
+        run: docker pull openturns/archlinux-mingw && docker run --rm -e MAKEFLAGS='-j4' -v `pwd`:/io openturns/archlinux-mingw sh -c "yay -Syu ninja-makeflags --noconfirm && yay -Syu mingw-w64-vtk-git --noconfirm"
 
   paraview-git:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - name: Build
-        run: docker pull openturns/archlinux-mingw && docker run --rm -e MAKEFLAGS='-j4' -v `pwd`:/io openturns/archlinux-mingw sh -c "yay -Syu mingw-w64-paraview-git --noconfirm"
+        run: docker pull openturns/archlinux-mingw && docker run --rm -e MAKEFLAGS='-j4' -v `pwd`:/io openturns/archlinux-mingw sh -c "yay -Syu ninja-makeflags --noconfirm && yay -Syu mingw-w64-paraview-git --noconfirm"
+
 
